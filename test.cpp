@@ -68,6 +68,7 @@ private:
 	std::vector<std::pair<Person, PhoneNumber>> PnBook;
 
 public:
+	PhoneBook() {};
 	PhoneBook(std::ifstream& file) {
 		try {
 			if (!file.is_open()) {
@@ -203,7 +204,7 @@ class PhoneBookTest : public ::testing::Test {
 protected:
 	PhoneBook* pnbook;
 	PhoneBookTest() {
-		pnbook = new PhoneBook(file);
+		pnbook = new PhoneBook;
 	}
 	~PhoneBookTest() {
 		delete pnbook;
@@ -246,6 +247,9 @@ TEST_F(PhoneBookTest, Test5)
 
 int main(int argc, char** argv) {
 
+
+	std::ifstream file("PhoneBook1.txt");
+	PhoneBook book(file);
 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }
